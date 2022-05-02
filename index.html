@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Odin - Rock Paper Scissors</title>
 </head>
 <body>
+    <div class="main-container">
+        <div class="header">Rock Paper Scissors</div>
+
+        <div class="player-choice">
+            <div id="rock" class="hand-box"><img src="images/rock.png"></div>
+            <div id="paper" class="hand-box"><img src="images/paper.png"></div>
+            <div id="scissors" class="hand-box"><img src="images/scissors.png"></div>
+        </div>
+
+        <div class="scores">
+            <div class="player">
+                <div class="text">YOU</div>
+                <div id="player_score" class="score">0</div>
+            </div>
+            <div class="player">
+                <div class="text">CPU</div>
+                <div id="comp_score" class="score">0</div>
+            </div>
+        </div>
+
+        <div class="footer-menu">
+            
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
