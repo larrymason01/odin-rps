@@ -1,75 +1,92 @@
-var playerScoreElement = document.getElementById("player_score");
-var compScoreElement = document.getElementById("comp_score");
-var playerScore = 0;
-var compScore = 0;
+let player_score = 0;
+let cpu_score = 0;
 
-var player;
-var comp;
-var didPlayerPlay = false;
+let buttons = document.querySelectorAll('.button');
 
+const player_score_text = document.querySelector('#player-score');
+const cpu_score_text = document.querySelector('#cpu-score');
 
-document.getElementById("rock").onmousedown = function () {
-    player = "rock";
-    didPlayerPlay = true;
-};
+const winner_text = document.querySelector('#winner-text');
+const win_text = document.querySelector('#win-text');
 
+const reset_button = document.querySelector('#reset-button');
 
-document.getElementById("paper").onmousedown = function () {
-    player = "paper";  
-    didPlayerPlay = true;
-};
+buttons.forEach((button) => {
+    button.addEventListener('mouseenter', () => {
+        button.setAttribute('style', 'margin-bottom: 5vh;');
+    })
 
+    button.addEventListener('mouseout', () => {
+        button.setAttribute('style', 'margin-bottom: 0;');
+    })
 
+    button.addEventListener('click', () => {
+        play_game(button.id)
+    })
+});
 
-document.getElementById("scissors").onmousedown = function () {
-    player = "scissors";
-    didPlayerPlay = true;
-};
+reset_button.addEventListener('click', () => {
+    player_score = 0;
+    cpu_score = 0;
+    player_score_text.textContent = player_score;
+    cpu_score_text.textContent = cpu_score;
 
+    winner_text.textContent = 'GAME';
+    win_text.textContent = 'RESET!';
+});
 
-function play_round(player, comp) {
-    if (player == "rock") {
-        if (comp == "scissors")
-            return 1;
-        else if (comp == "paper")
-            return 0;
-        else
-            return -1;
-    } else if (player == "paper") {
-        if (comp == "scissors")
-            return 0;
-        else if (comp == "paper")
-            return -1;
-        else
-            return 1;
+function play_game(player_choice) {
+    var cpu_choice = Math.floor(Math.random() * 3);
+
+    if (cpu_choice == 0) {
+        cpu_choice = 'rock';
+    } else if (cpu_choice == 1) {
+        cpu_choice = 'paper';
     } else {
-        if (comp == "scissors")
-            return -1;
-        else if (comp == "paper")
-            return 1;
+        cpu_choice = 'scissors';
+    }
+
+    if (player_choice == 'rock') {
+        if (cpu_choice == 'rock') 
+            tie();
+        else if (cpu_choice == 'paper') 
+            player_loose();
+        else 
+            player_win();
+    } else if (player_choice == 'paper') {
+        if (cpu_choice == 'rock') 
+            player_win();
+        else if (cpu_choice == 'paper')
+            tie();
         else
-            return 0;
+            player_loose();
+    } else if (player_choice == 'scissors') {
+        if (cpu_choice == 'rock')
+            player_loose();
+        else if (cpu_choice == 'paper') 
+            player_win();
+        else 
+            tie();
     }
 }
 
+function player_win() {
+    player_score++;
+    player_score_text.textContent = player_score;
 
-function comp_play() {
-    comp_hand = Math.random() * (max - min) + min;
+    winner_text.textContent = 'PLAYER';
+    win_text.textContent = 'WINS!';
 }
 
-while (true) {
-    if (didPlayerPlay) {
-        comp = comp_play();
-        let round = play_round(player, comp);
-        
-        if (round == 1) {
-            playerScore++;
-        } else if (round == 0) {
-            compScore++;
-        }
+function player_loose() {
+    cpu_score++;
+    cpu_score_text.textContent = cpu_score;
 
-        
-        
-        didPlayerPlay = false;
-    }
+    winner_text.textContent = 'CPU';
+    win_text.textContent = 'WINS!';
+}
+
+function tie() {
+    winner_text.textContent = 'TIE';
+    win_text.textContent = 'GAME!';
 }

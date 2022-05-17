@@ -1,81 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
+}
 
-    font-family: 'Press Start 2P', cursive;
-    color: black;
+body {
+    padding-left: 30%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .main-container {
     display: flex;
-    
     flex-direction: column;
+
+    width: 60%;
+    height: 100vh;
+}
+
+.header,
+.footer {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    height: 15vh;
 }
 
-.main-container .header {
-    margin-top: 3vh;
-    font-size: 48px;
+.buttons,
+.scoreboard {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    height: 35vh;
 }
 
-.player-choice {
+.button,
+.scoreboard-item {
+    width: 25vh;
     height: 25vh;
-    width: 100vh;
-    padding: 10vh;
+}
 
+.top,
+.bottom {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50%;
 
-    gap: 20vh;
+    font-size: 24px;
 }
 
-.hand-box {
-    width: 20vh;
-    height: 20vh;
-    font-size: 48px;
-
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.hand-box:hover{
-    box-shadow: 2px 2px 10px grey;
-}
-
-.scores {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30vh;
-}
-
-.player .text {
+.header {
     font-size: 64px;
-    flex: auto;
 }
 
-.player img {
-    height: 500%;
-    width: 500%;
-}
-
-.scores .player {
+.button {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#reset-button {
+    background-color: lightblue;
+
+    height: 50%;
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
     align-items: center;
 
-    gap: 10vh;
-}
-
-.player .score {
     font-size: 32px;
 }
 
-img {
-    width: 75%;
-    height: auto;
-}
